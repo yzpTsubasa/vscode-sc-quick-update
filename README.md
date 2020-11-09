@@ -1,0 +1,1 @@
+## Update all workspaceFolders(svn and git project) at same time~

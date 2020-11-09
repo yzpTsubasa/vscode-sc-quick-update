@@ -1,0 +1,91 @@
+{
+	"name": "vscode-sc-quick-update",
+	"displayName": "Vscode Source Control Quick Update",
+	"description": "Vscode Source Control Quick Update",
+	"version": "0.0.1",
+	"license": "MIT",
+	"publisher": "TsubasaYeung",
+	"engines": {
+		"vscode": "^1.45.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"git",
+		"commit",
+		"quick"
+	],
+	"icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yzpTsubasa/vscode-sc-quick-update.git"
+	},
+	"activationEvents": [
+		"onCommand:vscode-sc-quick-update.updateAllFolders"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"menus": {
+			"editor/title": [
+				{
+					"command": "vscode-sc-quick-update.updateAllFolders",
+					"group": "navigation@1"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "vscode-sc-quick-update.updateAllFolders",
+				"title": "Vscode Source Control Quick Update: Update All",
+				"icon": {
+					"light": "images/download@light.svg",
+					"dark": "images/download@dark.svg"
+				}
+			}
+		],
+		"configuration": [
+			{
+				"title": "vscode-sc-quick-update",
+				"properties": {
+					"vscode-sc-quick-update.dontUpdateSVN": {
+						"type": "boolean",
+						"default": false,
+						"description": "Don't update svn"
+					},
+					"vscode-sc-quick-update.dontPullGit": {
+						"type": "boolean",
+						"default": false,
+						"description": "Don't pull git"
+					},
+					"vscode-sc-quick-update.noTip": {
+						"type": "boolean",
+						"default": false,
+						"description": "Don't show tip"
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.45.0",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"eslint": "^6.8.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	}
+}
