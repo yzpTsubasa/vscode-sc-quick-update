@@ -12,7 +12,12 @@ export default async (options: any): Promise<string[]> => {
   vscode.workspace.workspaceFolders?.forEach(folder => {
     let config = vscode.workspace.getConfiguration('vscode-sc-quick-update', folder.uri);
     if (!config.get("dontUpdateSVN")) {
-      let hasSvn = fs.existsSync((folder.uri.fsPath + "/.svn"));
+      let hasSvn = false;
+      try {
+        childProcess.execSync("svn info", { cwd: folder.uri.fsPath });
+        hasSvn = true;
+      } catch (error) {
+      }
       if (!hasSvn) {
         return;
       }
@@ -23,7 +28,12 @@ export default async (options: any): Promise<string[]> => {
   vscode.workspace.workspaceFolders?.forEach(folder => {
     let config = vscode.workspace.getConfiguration('vscode-sc-quick-update', folder.uri);
     if (!config.get("dontPullGit")) {
-      let hasGit = fs.existsSync((folder.uri.fsPath + "/.git"));
+      let hasGit = false;
+      try {
+        const ret = childProcess.execSync("git rev-parse --is-inside-work-tree", { cwd: folder.uri.fsPath });
+        hasGit = ret.toString().trim() === "true";
+      } catch (error) {
+      }
       if (!hasGit) {
         return;
       }

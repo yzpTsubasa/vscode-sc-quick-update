@@ -2,7 +2,7 @@
 	"name": "vscode-sc-quick-update",
 	"displayName": "Vscode Source Control Quick Update",
 	"description": "Vscode Source Control Quick Update",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license": "MIT",
 	"publisher": "TsubasaYeung",
 	"engines": {
